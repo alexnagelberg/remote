@@ -1,0 +1,4 @@
+{
+  "name": "Remote Control Server",
+  "main": "./lib/main.js"
+}
