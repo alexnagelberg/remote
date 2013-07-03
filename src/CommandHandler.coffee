@@ -1,10 +1,14 @@
+lirc_node = require('../lirc_node')
+
 module.exports = class CommandHandler
   constructor: (@request, @response) ->
 
-  processRequest: ->
-    @command = @request?.query.command ? "undefined"
+  processRequest: (done) ->
+    command = @request?.query.command ? "undefined"
+    done command
     this
 
-  processResponse: ->
-    @response.send 200, "command = " + @command if @command?
+  processResponse: (body, done) ->
+    @response.send 200, body
+    done()
     this
