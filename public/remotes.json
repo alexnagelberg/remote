@@ -1,0 +1,36 @@
+[
+  {
+    "name": "TV",
+    "remote": "westinghouse",
+    "type": "remote",
+    "buttons": {
+      "power" : {
+        "type": "send_once",
+        "key": "key_power"
+      },
+      "mute" : {
+        "type": "send_once",
+        "key": "key_mute"
+      }
+    }
+  },
+  {
+    "name": "Stereo",
+    "remote": "onkyo",
+    "type": "remote",
+    "buttons": {
+      "power" : {
+        "type": "send_once",
+        "key": "key_power"
+      }
+    }
+  },
+  {
+    "name": "Macros",
+    "type": "macro",
+    "buttons" : {
+      "Turn all on": "allon",
+      "Turn all off": "alloff"
+    }
+  }
+]

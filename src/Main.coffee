@@ -9,6 +9,54 @@ class Main
     {
       "file": "index.htm",
       "mime": "text/html"
+    },
+    {
+      "file": "loadRemotes.js",
+      "mime": "application/x-javascript"
+    },
+    {
+      "file": "remotes.json",
+      "mime": "application/json"
+    },
+    {
+      "file": "jquery/jquery-1.10.2.min.js",
+      "mime": "application/x-javascript"
+    },
+    {
+      "file": "jquery/jquery.mobile-1.3.1.min.css",
+      "mime": "text/css"
+    },
+    {
+      "file": "jquery/jquery.mobile.structure-1.3.1.min.css",
+      "mime": "text/css"
+    },
+    {
+      "file": "jquery/jquery.mobile.theme-1.3.1.min.css",
+      "mime": "text/css"
+    },
+    {
+      "file": "jquery/jquery.mobile-1.3.1.min.js",
+      "mime": "application/x-javascript"
+    },
+    {
+      "file": "jquery/images/ajax-loader.gif",
+      "mime": "image/gif"
+    },
+    {
+      "file": "jquery/images/icons-18-black.png",
+      "mime": "image/png"
+    },
+    {
+      "file": "jquery/images/icons-18-white.png",
+      "mime": "image/png"
+    },
+    {
+      "file": "jquery/images/icons-36-black.png",
+      "mime": "image/png"
+    },
+    {
+      "file": "jquery/images/icons-36-white.png",
+      "mime": "image/png"
     }
   ]
   
@@ -19,22 +67,23 @@ class Main
     res.send(500, "something broke");
 
   for page in static_pages
-    app.get '/' + page["file"], (req, res) ->
-      handler = new CommandHandler req, res
-      handler.processRequest (command) ->
-        content = fs.readFileSync(page["file"]).toString();
-        handler.processResponse content, ->
-          console.log 'sent ' + page["file"] 
+    do (page) ->
+      app.use '/' + page["file"], (req, res) ->
+        handler = new CommandHandler req, res
+        handler.processRequest (command) ->
+          content = fs.readFileSync("public/" + page["file"].toString());
+          handler.processResponse content, page["mime"], ->
+            console.log 'sent ' + page["file"]
   
   app.get '/', (req, res) ->
     handler = new CommandHandler req, res
     handler.processRequest (command) -> 
       if command == "menu"
         irsend.send_once 'apple', 'menu', -> 
-          handler.processResponse 'OK', ->
+          handler.processResponse 'OK', 'text/html', ->
             console.log 'menu pressed'
       else
-        handler.processResponse command, ->
+        handler.processResponse command, 'text/html', ->
           console.log 'Sent ' + command + ' back to client.'
         console.log command
   try
