@@ -1,44 +1,195 @@
 [
   {
-    "name": "TV",
-    "remote": "westinghouse",
+    "name": "Apple TV",
+    "remote": "apple",
     "type": "remote",
     "buttons": {
-      "power" : {
+      "Up": {
         "type": "send_once",
-        "key": "key_power"
+        "key": "UP"
       },
-      "mute" : {
+      "Down": {
         "type": "send_once",
-        "key": "key_mute"
+        "key": "DOWN"
+      },
+      "Left": {
+        "type": "send_once",
+        "key": "LEFT"
+      },
+      "Right": {
+        "type": "send_once",
+        "key": "RIGHT"
+      },
+      "Play": {
+        "type": "send_once",
+        "key": "PLAY"
+      },
+      "Menu": {
+        "type": "send_once",
+        "key": "MENU"
+      },
+      "OK": {
+        "type": "send_once",
+        "key": "OK"
       }
     }
   },
   {
-    "name": "Stereo",
+    "name": "Onkyo",
     "remote": "onkyo",
     "type": "remote",
     "buttons": {
-      "power" : {
+      "Power": {
         "type": "send_once",
         "key": "key_power"
       },
-      "volume up": {
+      "BD/DVD": {
+        "type": "send_once",
+        "key": "key_dvd"
+      },
+      "VCR": {
+        "type": "send_once",
+        "key": "key_vcr"
+      },
+      "CBL/SAT": {
+        "type": "send_once",
+        "key": "key_sat"
+      },
+      "Games": {
+        "type": "send_once",
+        "key": "key_games"
+      },
+      "AUX": {
+        "type": "send_once",
+        "key": "key_aux"
+      },
+      "Tuner": {
+        "type": "send_once",
+        "key": "key_tuner"
+      },
+      "TV/CD": {
+        "type": "send_once",
+        "key": "key_tv"
+      },
+      "Port": {
+        "type": "send_once",
+        "key": "key_port"
+      },
+      "Volume Up": {
         "type": "pulse",
         "key": "key_volumeup"
       },
-      "volume down" : {
+      "Volume Down": {
         "type": "pulse",
         "key": "key_volumedown"
       }
     }
   },
   {
-    "name": "Macros",
-    "type": "macro",
-    "buttons" : {
-      "Turn all on": "allon",
-      "Turn all off": "alloff"
+    "name": "TV",
+    "remote": "westinghouse",
+    "type": "remote",
+    "buttons": {
+      "Mute": {
+        "type": "send_once",
+        "key": "key_mute"
+      },
+      "Power": {
+        "type": "send_once",
+        "key": "key_power"
+      },
+      "1": {
+        "type": "send_once",
+        "key": "key_1"
+      },
+      "2": {
+        "type": "send_once",
+        "key": "key_2"
+      },
+      "3": {
+        "type": "send_once",
+        "key": "key_3"
+      },
+      "4": {
+        "type": "send_once",
+        "key": "key_4"
+      },
+      "5": {
+        "type": "send_once",
+        "key": "key_5"
+      },
+      "6": {
+        "type": "send_once",
+        "key": "key_6"
+      },
+      "7": {
+        "type": "send_once",
+        "key": "key_7"
+      },
+      "8": {
+        "type": "send_once",
+        "key": "key_8"
+      },
+      "9": {
+        "type": "send_once",
+        "key": "key_9"
+      },
+      "0": {
+        "type": "send_once",
+        "key": "key_0"
+      },
+      "Last": {
+        "type": "send_once",
+        "key": "key_last"
+      },
+      "Source": {
+        "type": "send_once",
+        "key": "key_source"
+      },
+      "Channel Up": {
+        "type": "pulse",
+        "key": "key_channelup"
+      },
+      "Channel Down": {
+        "type": "pulse",
+        "key": "key_channeldown"
+      },
+      "Volume Up": {
+        "type": "pulse",
+        "key": "key_volumeup"
+      },
+      "Volume Down": {
+        "type": "pulse",
+        "key": "key_volumedown"
+      },
+      "Info": {
+        "type": "send_once",
+        "key": "key_info"
+      },
+      "Left": {
+        "type": "send_once",
+        "key": "key_left"
+      },
+      "Right": {
+        "type": "send_once",
+        "key": "key_right"
+      },
+      "Up": {
+        "type": "send_once",
+        "key": "key_up"
+      },
+      "Down": {
+        "type": "send_once",
+        "key": "key_down"
+      },
+      "Menu": {
+        "type": "send_once",
+        "key": "key_menu"
+      },
+      "Exit": {
+        "type": "send_once",
+        "key": "key_exit"
+      }
     }
   }
 ]
