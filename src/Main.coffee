@@ -70,22 +70,36 @@ class Main
     do (page) ->
       app.use '/' + page["file"], (req, res) ->
         handler = new CommandHandler req, res
-        handler.processRequest (command) ->
+        handler.processRequest ->
           content = fs.readFileSync("public/" + page["file"].toString());
           handler.processResponse content, page["mime"], ->
             console.log 'sent ' + page["file"]
-  
+
   app.get '/', (req, res) ->
     handler = new CommandHandler req, res
-    handler.processRequest (command) -> 
-      if command == "menu"
-        irsend.send_once 'apple', 'menu', -> 
+    handler.processRequest ->
+      content = fs.readFileSync "public/index.htm"
+      handler.processResponse content, "text/html", ->
+        console.log 'sent index.htm'
+
+  app.get '/send_once', (req, res) ->
+    handler = new CommandHandler req, res
+    handler.processRequest (remote, key) -> 
+      irsend.send_once remote, key, -> 
+        handler.processResponse 'OK', 'text/html', ->
+          console.log key + ' pressed'
+
+  app.get '/pulse', (req, res) ->
+    handler = new CommandHandler req, res
+    handler.processRequest (remote, key) ->
+      irsend.send_start remote, key, ->
+        console.log key + ' started'
+      setTimeout ->
+        irsend.send_stop remote, key, ->
           handler.processResponse 'OK', 'text/html', ->
-            console.log 'menu pressed'
-      else
-        handler.processResponse command, 'text/html', ->
-          console.log 'Sent ' + command + ' back to client.'
-        console.log command
+            console.log key + ' stopped'
+      , 1000
+
   try
     app.listen 80
   catch err

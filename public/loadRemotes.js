@@ -9,6 +9,8 @@ $(document).ready(function() {
         "<div data-role='controlgroup'>\n";
 
         $.each(remote["buttons"], function(key, value) {        
+          // TODO: put if .. for send_once/pulse to do start and stop for pulse, onclick for send_once
+          // note: pulse has both an onclick for send_once and a separate touch_start for pulse
           div += "<a data-role='button' href='#' onclick=$.ajax('" + "/" + value["type"] + "?remote=" + remote["remote"] + "&key=" + value["key"] +  "')>" + key + "</a>";
         });
 

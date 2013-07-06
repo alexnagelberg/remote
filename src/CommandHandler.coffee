@@ -4,8 +4,9 @@ module.exports = class CommandHandler
   constructor: (@request, @response) ->
 
   processRequest: (done, args) ->
-    command = @request?.query.command ? "undefined"
-    done command, args
+    key = @request?.query.key ? "undefined"
+    remote = @request?.query.remote ? "undefined"
+    done remote, key, args
 
   processResponse: (body, type, done) ->
     @response.setHeader 'Content-Type', type

@@ -22,6 +22,14 @@
       "power" : {
         "type": "send_once",
         "key": "key_power"
+      },
+      "volume up": {
+        "type": "pulse",
+        "key": "key_volumeup"
+      },
+      "volume down" : {
+        "type": "pulse",
+        "key": "key_volumedown"
       }
     }
   },
