@@ -20,7 +20,7 @@
         "type": "send_once",
         "key": "RIGHT"
       },
-      "Play": {
+      "Play/Pause": {
         "type": "send_once",
         "key": "PLAY"
       },
@@ -42,6 +42,10 @@
       "Power": {
         "type": "send_once",
         "key": "key_power"
+      },
+      "Mute": {
+        "type": "send_once",
+        "key": "key_mute"
       },
       "BD/DVD": {
         "type": "send_once",
@@ -90,13 +94,17 @@
     "remote": "westinghouse",
     "type": "remote",
     "buttons": {
+      "Power": {
+        "type": "send_once",
+        "key": "key_power"
+      },
       "Mute": {
         "type": "send_once",
         "key": "key_mute"
       },
-      "Power": {
+      "OK": {
         "type": "send_once",
-        "key": "key_power"
+        "key": "key_ok"
       },
       "1": {
         "type": "send_once",
