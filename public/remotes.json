@@ -199,5 +199,11 @@
         "key": "key_exit"
       }
     }
+  },
+  {
+    "name": "AppleTV to TV",
+    "type": "macro",
+    "command": "hdmi_to_tv"
   }
+  
 ]
