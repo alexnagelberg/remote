@@ -1,0 +1,67 @@
+#!/bin/sh
+PID_FILE=/var/run/remote.pid
+WORK_DIR=/home/pi/remote
+NODE=/usr/local/bin/node
+USER=root
+NAME="remote.js"
+SCRIPTNAME=/etc/init.d/$NAME
+
+. /lib/lsb/init-functions
+
+d_start() {
+  if [ -e "$PID_FILE" ]
+  then
+    log_warning_msg "$NAME already running"
+    return 1
+  fi
+
+  start-stop-daemon -b -m -p $PID_FILE -c $USER -d $WORK_DIR -x $NODE --start -- .
+
+  if [ "$?" -ne "0" ]
+  then
+    rm $PID_FILE
+    log_warning_msg "$NAME webserver failed to start"
+    return 1
+  else
+    log_daemon_msg "$NAME started"
+    return 0
+  fi
+}
+
+d_stop() {
+  if [ ! -e "$PID_FILE" ]
+  then
+    log_warning_msg "$NAME not running"
+    return 1
+  fi
+
+  start-stop-daemon -p $PID_FILE --stop
+  if [ "$?" -ne "0" ]
+  then
+    log_warning_msg "$NAME failed to stop"
+    return 1
+  else
+    rm $PID_FILE
+    log_daemon_msg "$NAME stopped"
+    return 0
+  fi
+}
+
+case "$1" in
+  start)
+    log_daemon_msg "Starting webserver" "remote.js"
+    d_start
+    log_end_msg $? 
+    ;;
+  stop)
+    log_daemon_msg "Stopping webserver" "remote.js"
+    d_stop
+    log_end_msg $?
+    ;;
+  *) 
+    echo "Usage: $SCRIPTNAME {start|stop}" >&2
+    exit 1
+    ;;
+esac
+
+exit 0
