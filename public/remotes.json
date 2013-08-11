@@ -201,6 +201,11 @@
     }
   },
   {
+    "name": "Power on/off all",
+    "type": "macro",
+    "command": "power"
+  },
+  {
     "name": "AppleTV to TV",
     "type": "macro",
     "command": "hdmi_to_tv"

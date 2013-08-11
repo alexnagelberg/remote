@@ -1,0 +1,26 @@
+{
+  "power" : [
+    {
+      "remote": "westinghouse",
+      "keys": [ "key_power" ],
+      "delay": 0
+    },
+    {
+      "remote": "onkyo",
+      "keys": [ "key_power" ],
+      "delay": 2000
+    }
+  ],
+  "hdmi_to_tv": [
+    {
+      "remote": "westinghouse",
+      "keys": [ "key_source", "key_up", "key_up", "key_up", "key_up", "key_ok", "key_ok" ],
+      "delay": 0
+    },
+    {
+      "remote": "onkyo",
+      "keys": [ "key_tv" ],
+      "delay": 5000
+    }
+  ]
+}

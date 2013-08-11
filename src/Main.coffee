@@ -4,61 +4,8 @@ class Main
   lirc_node = require '../lirc_node'
   irsend = new lirc_node.IRSend
   fs = require 'fs'
-
-  static_pages = [
-    {
-      "file": "index.htm",
-      "mime": "text/html"
-    },
-    {
-      "file": "loadRemotes.js",
-      "mime": "application/x-javascript"
-    },
-    {
-      "file": "remotes.json",
-      "mime": "application/json"
-    },
-    {
-      "file": "jquery/jquery-1.10.2.min.js",
-      "mime": "application/x-javascript"
-    },
-    {
-      "file": "jquery/jquery.mobile-1.3.1.min.css",
-      "mime": "text/css"
-    },
-    {
-      "file": "jquery/jquery.mobile.structure-1.3.1.min.css",
-      "mime": "text/css"
-    },
-    {
-      "file": "jquery/jquery.mobile.theme-1.3.1.min.css",
-      "mime": "text/css"
-    },
-    {
-      "file": "jquery/jquery.mobile-1.3.1.min.js",
-      "mime": "application/x-javascript"
-    },
-    {
-      "file": "jquery/images/ajax-loader.gif",
-      "mime": "image/gif"
-    },
-    {
-      "file": "jquery/images/icons-18-black.png",
-      "mime": "image/png"
-    },
-    {
-      "file": "jquery/images/icons-18-white.png",
-      "mime": "image/png"
-    },
-    {
-      "file": "jquery/images/icons-36-black.png",
-      "mime": "image/png"
-    },
-    {
-      "file": "jquery/images/icons-36-white.png",
-      "mime": "image/png"
-    }
-  ]
+  static_pages = require '../pages.json'
+  macros = require '../macros.json'
   
   CommandHandler = require './CommandHandler'
 
@@ -81,6 +28,20 @@ class Main
       content = fs.readFileSync "public/index.htm"
       handler.processResponse content, "text/html", ->
         console.log 'sent index.htm'
+
+  app.get '/macro', (req, res) ->
+    handler = new CommandHandler req, res
+    handler.processMacro (command) ->
+      if macros[command]
+        for press in macros[command]
+          do (press) ->
+            setTimeout ->
+              irsend.send_once press.remote, press.keys
+            , press.delay
+        handler.processResponse "ok", "text/html", ->
+          console.log "sent macro " + command
+      else
+        handler.processResponse "no", "text/html"
 
   app.get '/send_once', (req, res) ->
     handler = new CommandHandler req, res

@@ -8,6 +8,10 @@ module.exports = class CommandHandler
     remote = @request?.query.remote ? "undefined"
     done remote, key, args
 
+  processMacro: (done) ->
+    command = @request?.query.command ? "undefined"
+    done command
+
   processResponse: (body, type, done) ->
     @response.setHeader 'Content-Type', type
     @response.send 200, body
